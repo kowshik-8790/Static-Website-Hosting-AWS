@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Architecture & DevOps Portfolio | Kasanaboina Kowshik</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-accent">&#9729;</span> AWS Cloud Portfolio
+            </div>
+            <nav class="nav-links">
+                <a href="#architecture">Architecture</a>
+                <a href="#services">AWS Services</a>
+                <a href="#security">Security</a>
+                <a href="#deployment">Deployment</a>
+            </nav>
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">&#9790;</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">Production Cloud Deployment</span>
+                <h1>Secure, Low-Latency Static Website Hosting on AWS</h1>
+                <p>Architected with Amazon S3 for durable object storage, Amazon CloudFront with Origin Access Control (OAC) for global edge acceleration, and Route 53 with SSL/TLS encryption.</p>
+                <div class="hero-actions">
+                    <a href="#architecture" class="btn primary-btn">View Architecture</a>
+                    <a href="https://github.com/kowshik-8790" target="_blank" class="btn secondary-btn">GitHub Profile &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section">
+            <div class="container">
+                <h2 class="section-title">Cloud Infrastructure Architecture</h2>
+                <p class="section-subtitle">Traffic flow and security boundaries from DNS query to edge caching and S3 origin</p>
+                
+                <div class="architecture-flow">
+                    <div class="flow-step">
+                        <div class="step-num">1</div>
+                        <h3>Amazon Route 53</h3>
+                        <p>Routes user DNS queries with latency-based or alias routing directly to CloudFront distribution.</p>
+                    </div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">
+                        <div class="step-num">2</div>
+                        <h3>Amazon CloudFront</h3>
+                        <p>Edge caches static assets across 450+ Points of Presence globally. Enforces HTTPS via AWS Certificate Manager (ACM).</p>
+                    </div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">
+                        <div class="step-num">3</div>
+                        <h3>Origin Access Control (OAC)</h3>
+                        <p>Signs requests with SigV4 so S3 only accepts traffic originating from CloudFront. Direct public S3 access is blocked.</p>
+                    </div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="flow-step">
+                        <div class="step-num">4</div>
+                        <h3>Amazon S3 Bucket</h3>
+                        <p>Stores static assets (HTML, CSS, JS, images) with server-side encryption (SSE-S3 / AES-256) and versioning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section alt-bg">
+            <div class="container">
+                <h2 class="section-title">AWS Services & Technologies Used</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">&#128194;</div>
+                        <h3>Amazon S3</h3>
+                        <p>Configured as a private origin. Public access is 100% blocked via S3 Block Public Access settings and strict bucket policies.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#9889;</div>
+                        <h3>Amazon CloudFront</h3>
+                        <p>Global CDN delivering low latency, gzip/brotli compression, custom error pages (404/403 to index.html for SPA), and caching policies.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#127760;</div>
+                        <h3>Amazon Route 53</h3>
+                        <p>Highly available and scalable cloud DNS service routing custom domains with Alias A and AAAA records to CloudFront.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#128274;</div>
+                        <h3>AWS Certificate Manager (ACM)</h3>
+                        <p>Manages automated SSL/TLS certificates in us-east-1 to enable secure HTTPS communication with TLS 1.3 protocol support.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#128737;</div>
+                        <h3>Origin Access Control (OAC)</h3>
+                        <p>Modern AWS standard for securing S3 origins with SigV4 authentication, replacing legacy Origin Access Identity (OAI).</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#9874;</div>
+                        <h3>CloudFormation / IaC</h3>
+                        <p>Infrastructure as Code templates automating repeatable, declarative infrastructure provisioning and state management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="security" class="section">
+            <div class="container">
+                <h2 class="section-title">Key Security Implementations</h2>
+                <div class="security-list">
+                    <div class="sec-item">
+                        <span class="sec-check">&#10004;</span>
+                        <div>
+                            <h4>S3 Block Public Access Enabled</h4>
+                            <p>All four S3 public access block flags are activated. The bucket is not accessible via public URL or direct HTTP requests.</p>
+                        </div>
+                    </div>
+                    <div class="sec-item">
+                        <span class="sec-check">&#10004;</span>
+                        <div>
+                            <h4>HTTPS Enforcement & Security Headers</h4>
+                            <p>HTTP requests are automatically redirected to HTTPS (301 Moved Permanently). Strict-Transport-Security (HSTS) headers enforced.</p>
+                        </div>
+                    </div>
+                    <div class="sec-item">
+                        <span class="sec-check">&#10004;</span>
+                        <div>
+                            <h4>SigV4 IAM Policy Validation</h4>
+                            <p>S3 bucket policy validates <code>AWS:SourceArn</code> matching the specific CloudFront distribution ARN.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deployment" class="section alt-bg">
+            <div class="container">
+                <h2 class="section-title">Automated CI/CD & Deployment</h2>
+                <div class="code-box">
+                    <pre><code># Automated Sync & Cache Invalidation Workflow
+aws s3 sync ./website s3://your-bucket-name --delete
+aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths "/*"</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; <span id="year"></span> Kasanaboina Kowshik — AWS Cloud Engineer</p>
+            <p>Hosted on <strong>AWS S3 + CloudFront CDN + Route 53</strong></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
